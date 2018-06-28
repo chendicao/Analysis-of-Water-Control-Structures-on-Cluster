@@ -1,5 +1,5 @@
 # Analysis-of-Water-Control-Structures-on-Cluster
-For the SC18 poster and CAINE18 paper Flexible Architecture for Analysis of Water Control Structures.
+For the SC18 poster and CAINE18 paper: Flexible Architecture for Analysis of Water Control Structures.
 
 # Extensible OpenFOAM framework for cluster(Beocat)
 
@@ -9,6 +9,7 @@ This is a handy framework for user to run OpenFOAM application on cluster like B
 
 ## Dependency
 
+OpenFOAM[OpenFOAM-url] 
 
 
 ## Installation
@@ -39,10 +40,10 @@ npm test
 
 ## Lincese
 
-See the LICENSE file.
+See the LICENSE[license-url] file.
  
 
- 
- 
+ [license-url]: https://github.com/paragon520/Analysis-of-Water-Control-Structures-on-Cluster/blob/master/LICENSE
+ [OpenFOAM-url]:  https://openfoam.org/download/
 
  
