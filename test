@@ -1,0 +1,87 @@
+#!/bin/bash
+ 
+#------------------------------------------------------------------------------
+foamVersion="OpenFOAM-5.x"
+
+
+#------------------------------------------------------------------------------
+foamCleanTutorials
+rm -rf constant/triSurface/*.eMesh
+rm -rf 0 log* constant/extend* processor*
+
+#------------------------------------------------------------------------------
+echo -e "\n
+Start meshing
+-------------------------------------------------------------------------------
+"
+start_time=`date +%s`
+
+#------------------------------------------------------------------------------
+echo -e "   - Create background mesh"
+ideasUnvToFoam cad/backgroundMeshBig.unv > logFile
+#blockMesh > logFile
+
+#echo -e "   - Scale 1000 times for polyMesh"
+#transformPoints -scale '(1e3 1e3 1e3)' > logFile
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Change one boundary name (from old versions, depreciated)"
+sed 's/outletGroovy/outlet/' constant/polyMesh/boundary -i
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Meshing with snappyHexMesh"
+snappyHexMesh -overwrite >> logFile
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Extrude one patch to make a 2D mesh"
+extrudeMesh  >> logFile
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Change patch type in the boundary file" 
+changeDictionary  >> logFile
+
+
+#------------------------------------------------------------------------------
+echo -e "\n
+-------------------------------------------------------------------------------
+End Meshing\n
+"
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Copy 0.orig to 0"
+rm -r 0
+cp -r 0.orig 0
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Set field"
+setFields > logSolver
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Decompose the mesh"
+decomposePar >> logSolver
+
+
+#------------------------------------------------------------------------------
+echo -e "   - Start simulation (approximately 10 - 30 minutes)"
+mpirun -np 4 interFoam -parallel >> logSolver
+
+#mpirun -np 2 interFoam  
+
+#------------------------------------------------------------------------------
+echo -e "   - Reconstruct partition\n\n"
+reconstructPar >> logSolver
+
+#------------------------------------------------------------------------------
+echo -e "   - Simulation ended\n\n"
+
+end_time=`date +%s`
+echo Total execution time was `expr $end_time - $start_time` s.
+
+
