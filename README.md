@@ -32,14 +32,14 @@ Before you run on cluster:
 2. Make sure your cluster server has OpenFOAM module installed and check version with your server administrator.
 3. Modify the header code in HPCjob.sh, HPCclean.sh and HPCrecon.sh to make it compatible with your cluster.
 
-Clean your folder if needed.(Optional)
+Clean your previous work if needed.(Optional)
 ```sh
 bash HPCclean.sh
 ```
 
-Run your job.
+Run your job. (Since Beocat using CentOS Linux servers coordinated by the Slurm job submission and scheduling system, we use sbatch to submit our job.) 
 ```sh
-bash HPCjob.sh
+sbatch HPCjob.sh
 ```
 Reconstruct your result if using mpirun to do parallel computing. 
 ```sh
