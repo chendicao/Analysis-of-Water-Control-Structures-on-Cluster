@@ -9,8 +9,8 @@ This is a handy framework for user to run OpenFOAM application on cluster like B
 
 ## Prerequisites
 
-[OpenFOAM] 
-[ParaView]
+* [OpenFOAM]  
+* [ParaView]
 
 ## Installation 
 ```sh
@@ -18,7 +18,9 @@ git clone https://github.com/paragon520/Analysis-of-Water-Control-Structures-on-
 cd Analysis-of-Water-Control-Structures-on-Cluster
 ``` 
 
-## Test and run on local machine  
+## Test and run on local machine 
+
+Simply run: 
 ```sh
 ./clean
 ./test 
@@ -26,7 +28,7 @@ cd Analysis-of-Water-Control-Structures-on-Cluster
  
 ## Run on cluster(Beocat)
 Before you run on cluster:
-1. Paste this project on your cluster. 
+1. Put this project on your cluster. 
 2. Make sure your cluster server has OpenFOAM module installed and check version with your server administrator.
 3. Modify the header code in HPCjob.sh, HPCclean.sh and HPCrecon.sh to make it compatible with your cluster.
 
@@ -39,13 +41,13 @@ Run your job.
 ```sh
 bash HPCjob.sh
 ```
-Reconstruct your result if using mpirun to do pararell computing. 
+Reconstruct your result if using mpirun to do parallel computing. 
 ```sh
 bash HPCrecon.sh
 ```
 
 ## View your result 
-Open dummy file foam.foam in ParaView to visulize your simulation result.
+Open dummy file foam.foam in ParaView to view your simulation result.
 ```sh
 paraview & 
 ```
