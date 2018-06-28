@@ -7,30 +7,47 @@ This is a handy framework for user to run OpenFOAM application on cluster like B
 
 ![](stlpic.png)
 
-## Dependency
+## Prerequisites
 
-OpenFOAM[OpenFOAM-url] 
+[OpenFOAM] 
+[ParaView]
 
-
-## Installation
-
-OS X & Linux:
-
- 
-
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-
- 
-## Development setup
-
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
+## Installation 
 ```sh
-make install
-npm test
+git clone https://github.com/paragon520/Analysis-of-Water-Control-Structures-on-Cluster
+cd Analysis-of-Water-Control-Structures-on-Cluster
+``` 
+
+## Test and run on local machine  
+```sh
+./clean
+./test 
+```
+ 
+## Run on cluster(Beocat)
+Before you run on cluster:
+1. Paste this project on your cluster. 
+2. Make sure your cluster server has OpenFOAM module installed and check version with your server administrator.
+3. Modify the header code in HPCjob.sh, HPCclean.sh and HPCrecon.sh to make it compatible with your cluster.
+
+Clean your folder if needed.(Optional)
+```sh
+bash HPCclean.sh
+```
+
+Run your job.
+```sh
+bash HPCjob.sh
+```
+Reconstruct your result if using mpirun to do pararell computing. 
+```sh
+bash HPCrecon.sh
+```
+
+## View your result 
+Open dummy file foam.foam in ParaView to visulize your simulation result.
+```sh
+paraview & 
 ```
 
 ## Release History
@@ -40,10 +57,10 @@ npm test
 
 ## Lincese
 
-See the LICENSE[license-url] file.
+See the  [LICENSE] file.
  
 
- [license-url]: https://github.com/paragon520/Analysis-of-Water-Control-Structures-on-Cluster/blob/master/LICENSE
- [OpenFOAM-url]:  https://openfoam.org/download/
-
+ [LICENSE]: https://github.com/paragon520/Analysis-of-Water-Control-Structures-on-Cluster/blob/master/LICENSE
+ [OpenFOAM]:  https://openfoam.org/download/
+[ParaView]: https://www.paraview.org/download/
  
