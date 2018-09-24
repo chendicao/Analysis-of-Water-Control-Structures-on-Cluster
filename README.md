@@ -1,5 +1,5 @@
 # Analysis-of-Water-Control-Structures-on-Cluster
-For the SC18 poster and CAINE18 paper: Flexible Architecture for Analysis of Water Control Structures.
+For the CAINE18 paper: Flexible Architecture for Analysis of Water Control Structures.
 
 # Extensible OpenFOAM framework for cluster(Beocat)
 
